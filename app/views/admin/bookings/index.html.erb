@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+<%= render 'layouts/navigation_for_admin' %>
+
+
+<h1 align="center">List of bookings</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">User name</th>
+    <th scope="col">User email</th>
+    <th scope="col">Room id</th>
+    <th scope="col">Date of create</th>
+    <th scope="col">Start date of booking</th>
+    <th scope="col">Last date of booking</th>
+    <th scope="col">Status</th>
+    <th scope="col">Change status</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @bookings.each do |booking| %>
+    <tr>
+      <td> <%= booking.user_name %></td>
+      <td> <%= booking.user_email %></td>
+      <td> <%= booking.room_id %></td>
+      <td> <%= booking.created_at %></td>
+      <td> <%= booking.start_date %></td>
+      <td> <%= booking.last_date %></td>
+      <td> <%= booking.status %></td>
+
+      <td> <%= button_to "Change status", toggle_status_admin_booking_path(booking), method: :get, class: "btn btn-xs btn-warning" %>
+      <td> <%= button_to "Delete", admin_booking_path(booking), method: :delete, data: { confirm: "Are you sure you want to delete this booking?"}, class: "btn btn-xs btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<%= render 'layouts/navigation_for_admin' %>
+<h1> Welcome to the admin-zone of hotel "Grand Budapest" </h1>
+
+</br>
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <table class="table table-bordered border-primary">
+     <thead class="text-center">
+       <tr>
+        <td  colspan="3" >Date: <%=1.day.ago.to_date%> </td>
+        </tr>
+     </thead>
+     <tbody>
+      <tr>
+        <td>New bookings  </td>
+        <td>Pended bookings</td>
+        <td>Accepted bookings</td>
+      </tr>
+
+      <tr>
+        <td><%= @caclulations.count%></td>
+        <td><%= @caclulations.values_at("pended")[0].to_i%></td>
+        <td><%= @caclulations.values_at("accepted")[0].to_i%></td>
+     </tr>
+    </tbody>
+    </table>
+  </div>
+</div>

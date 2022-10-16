@@ -1,0 +1,64 @@
+
+<%= render 'layouts/navigation' %>
+
+<div class="container">
+   <%= form_for :booking, url: room_bookings_path, data: {turbo:false} do |form| %>
+      <% if @booking.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+      <ul>
+        <% @booking.errors.each do |error| %>
+          <li><%=  error.full_message  %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= render 'rooms/show' %>
+
+    <div class="py-5 text-center">
+
+      <h2>Booking form for room  </h2>
+      <p class="lead">Please complete the fields below.</p>
+    </div>
+  <%@room = Room.find(params[:room_id]) %>
+
+
+
+  <div class="container-sm">
+
+    <form>
+
+      <!-- Name input -->
+      <div class="form-outline mb-4">
+
+        <label class="form-label" for="form4Example1">Name</label>
+        <input type="text" id="form4Example1" class="form-control" name="booking[user_name]" />
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form4Example2">Email address</label>
+        <input type="email" id="form4Example2" class="form-control"name="booking[user_email]" />
+      </div>
+
+      <div>
+        <%= form.label "Choose check_in date", style: "display: block" %>
+        <%= form.date_field :start_date %>
+      </div>
+
+      <div>
+        <%= form.label "Choose check_out date", style: "display: block" %>
+        <%= form.date_field :last_date %>
+      </div>
+
+      <div>
+        <input name="booking[room_id]" value="<%=params[:room_id] %>" type="hidden">
+      </div>
+      <%@booking.room_id = params[:room_id] %>
+      <!-- Submit button -->
+      <button type="submit" class="btn w-100 btn btn-success btn-block mb-4">Submit</button>
+
+    </form>
+  <% end %>
+    </div>
+</div>

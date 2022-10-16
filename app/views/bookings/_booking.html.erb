@@ -1,0 +1,43 @@
+<div id="<%= dom_id booking %>">
+  <%@room = Room.find(params[:room_id]) %>
+
+<div class="b-example-divider"></div>
+<div class="modal modal-tour position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalTour">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-body p-5">
+        <h2 class="fw-bold mb-0">Your booking:</h2>
+
+        <ul class="d-grid gap-4 my-5 list-unstyled">
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Name</h5>
+              <%= booking.user_name %>
+            </div>
+          </li>
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Email</h5>
+              <%=booking.user_email%>
+            </div>
+          </li>
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Check-in & check-out dates</h5>
+              <%=booking.start_date%> - <%=booking.last_date%>
+            </div>
+          </li>
+          <li class="d-flex gap-4">
+            <div>
+              <h5 class="mb-0">Room</h5>
+              <%= @room.name %>
+            </div>
+          </li>
+        </ul>
+        <%= button_to "Great, thanks!", rooms_path, method: :get, class: "btn btn-lg btn-success mt-5 w-100"%>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

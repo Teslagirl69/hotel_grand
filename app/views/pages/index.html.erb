@@ -1,0 +1,100 @@
+<%= render 'layouts/navigation' %>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+</head>
+<body >
+<div
+  class="bg-image"
+  style="
+  background-image: url('https://phonoteka.org/uploads/posts/2022-01/1643003484_1-phonoteka-org-p-bledno-rozovii-odnotonnii-fon-1.jpg');
+    height: 120vh;
+  "
+>
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6); ">
+    <div class="d-flex justify-content-center align-items-center 150vh">
+      <h1 class="text-white mb-0"> Hotel Grand Budapest</h1>
+    </div>
+  </div>
+</body>
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-5">
+    <div class="col">
+      <div class="p-3 border bg-white">
+        <%= Date.today.strftime("%A, %B %d") %>
+        <img src=<%= @weather.icon_url %>>
+        Temperature is <%= @weather.temperature %> <span>°C </span>
+      </div>
+    </div>
+    <div class="row gx-5 align-items-center justify-content-center">
+      <div class="col-lg-8 col-xl-7 col-xxl-6">
+        <div class="my-5 text-center text-xl-start">
+          <h1 class="display-5 fw-bolder text-white mb-2">Grand Budapest est. 2011</h1>
+          <p class="lead fw-normal text-white-50 mb-4">Located next to Freedom Square, the hotel offers a variety of options that will be appreciated by the traveler looking for the highest quality. You will find gourmet cuisine, exclusive stays in suites with trips to the city, the sensations you can experience at the SPA Sensations, the details of decoration in a hotel chosen by the famous Philippe Starck and exquisite events.    </p>
+             <p class="lead fw-normal text-white-50 mb-4">The 15 rooms of this hotel in Budapest of the Grand category are an overnight stay for those who want to visit Budapest itself with the confidence that travel is enjoyed not only outside the hotel, but also in it.   </p>
+               </div>
+      </div>
+      <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+        <div class="fotorama" >
+        data-width="75%"
+        data-minheight="500"
+        data-allowfullscreen="native"
+        data-autoplay="true"
+        <img src="https://i.kinja-img.com/gawker-media/image/upload/q_75,w_1600,h_900,c_fill/cbf1e0790bd57e4fffb4758c053eb317.JPG">
+        <img src="https://static3.coolconnections.ru/images/2408/standard/default/6a5b041e7a9954c7ab8676ff60ea37a1c85a7aeb.jpg?1623326576">
+        <img src="https://www.vokrug.tv/pic/product/0/c/f/4/0cf4d173a50257ab0f35373129d74198.jpeg">
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container px-5 my-5">
+<div class="row gx-5 justify-content-center">
+  <div class="col-lg-8 col-xl-6">
+    <div class="text-center">
+      <h2 class="fw-bolder">Our best room</h2>
+      <p class="lead fw-normal text-muted mb-5">Preview of our best rooms</p>
+    </div>
+  </div>
+</div>
+<div class="row gx-5">
+  <%@rooms.each do |room| %>
+
+  <div class="col-lg-4 mb-5">
+    <div class="card h-100 shadow border-0">
+      <div class="fotorama" >
+        <% room.images.each do |image|%>
+        data-width="75%"
+        data-minheight="500"
+        data-allowfullscreen="native"
+        data-autoplay="true"
+        <div data-img=<%= link_to image_tag(room.images_as_thumbnails(image)), image %></div>
+        <%end%>
+
+      </div>
+      <div class="card-body p-4">
+        <h5 class="card-title mb-3"><%=room.name %></h5>
+        <p class="card-text mb-0"><%=room.short_description %></p>
+        <br>
+        <%= button_to "Click here to see this room", room, method: :get, class: "btn btn-secondary btn-sm"%>
+
+      </div>
+      <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+        <div class="d-flex align-items-end justify-content-between">
+          <div class="d-flex align-items-center">
+             <div class="small">
+              <div class="fw-bold">Price: </div>
+              <div class="text-muted"><%=room.price%> $ per one night</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%end%>
+</div>
+
+</div>

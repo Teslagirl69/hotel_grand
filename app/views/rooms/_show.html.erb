@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+<%@room = Room.find(params[:room_id])%>
+<div class="clearfix">
+  <div class="container-lg">
+  <% @room.images.each do |image|%>
+    <div class="col-md-6 float-md-end mb-3 ms-md-3" <%= link_to image_tag(@room.images_as_thumbnails(image)), image %> </div>
+  <%end%>
+    <div class="my-5 text-center text-xl-start">
+    <h1 class="display-5 fw-bolder text-brown-pink mb-2">    <%= @room.name %></h1>
+    <p class="lead fw-normal brown-pink-50 mb-4">    <%= @room.description %></p>
+    <p class="lead fw-normal brown-pinke mb-4">  Price is:  <%= @room.price %>$ per one night</p>
+    </div>
+  </div>
+</div>

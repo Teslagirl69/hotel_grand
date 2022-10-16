@@ -1,0 +1,58 @@
+<p style="color: green"><%= notice %></p>
+<%= render 'layouts/navigation' %>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+</head>
+<body>
+<div
+  class="bg-image"
+  style="
+  background-image: url('https://phonoteka.org/uploads/posts/2022-01/1643003484_1-phonoteka-org-p-bledno-rozovii-odnotonnii-fon-1.jpg');
+    height: 100vh;
+  "
+>
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);, ">
+    <div class="d-flex justify-content-center align-items-center 150vh">
+      <h1 class="text-white mb-0"> Hotel Grand Budapest</h1>
+    </div>
+    <div class="d-flex justify-content-center align-items-center 150vh">
+      <h1 class="text-white mb-0"> Reviews</h1>
+    </div>
+  </div>
+
+    <div class="modal-footer">
+  <%= button_to "Create new review", new_review_path, method: :get, class: "btn btn-secondary button-right btn-lg "%>
+  </div>
+
+
+<section style="background-color: rosybrown;  height: 61vh">
+  <% @reviews.each do |review| %>
+  <div class="container my-5 py-5 text-dark">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-11 col-lg-9 col-xl-7">
+        <div class="d-flex flex-start mb-4">
+          <img class="rounded-circle shadow-1-strong me-3"
+               src="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg" alt="avatar" width="65"
+               height="65" />
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <div class="">
+                <h5><%=review.author_name%></h5>
+                <p class="small"><%=(Time.now -  review.created_at).to_i / 86400 %> days ago</p>
+                <p>
+                  <%=review.body%>
+                </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%end%>
+ </section>
+  </br>
+  <div class="center">
+    <%= paginate @reviews, window: 2%>
+  </div>

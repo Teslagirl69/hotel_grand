@@ -1,0 +1,28 @@
+<div id="<%= dom_id room %>">
+  <p>
+    <strong>Name:</strong>
+    <%= room.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= room.description %>
+  </p>
+  <p>
+    <strong>Short description:</strong>
+    <%= room.short_description %>
+  </p>
+  <p>
+    <strong>Price:</strong>
+    <%= room.price %>
+  </p>
+
+  <p>
+    <% room.images.each do |image|%>
+      <%= link_to image_tag(room.images_as_thumbnails(image)), image %>
+    <%end%>
+  </p>
+
+
+
+</div>

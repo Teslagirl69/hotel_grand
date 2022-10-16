@@ -1,0 +1,11 @@
+<%= render 'layouts/navigation_for_admin' %>
+<p style="color: green"><%= notice %></p>
+
+<%= render @room %>
+
+<div>
+  <%= link_to "Edit this room", edit_admin_room_path(@room) %> |
+  <%= link_to "Back to rooms", admin_rooms_path %>
+
+  <%= button_to "Destroy this room", @room, method: :delete %>
+</div>

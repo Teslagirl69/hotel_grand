@@ -1,0 +1,62 @@
+<p style="color: green"><%= notice %></p>
+<%= render 'layouts/navigation' %>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+</head>
+<body >
+<div
+  class="bg-image"
+  style="
+  background-image: url('https://phonoteka.org/uploads/posts/2022-01/1643003484_1-phonoteka-org-p-bledno-rozovii-odnotonnii-fon-1.jpg');
+    height: 100vh;
+  "
+>
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);, ">
+    <div class="d-flex justify-content-center align-items-center 150vh">
+      <h1 class="text-white mb-0"> Hotel Grand Budapest</h1>
+     </div>
+    <div class="d-flex justify-content-center align-items-center 150vh">
+      <h1 class="text-white mb-0"> Rooms</h1>
+    </div>
+  </div>
+</body>
+
+<% @rooms.each do |room| %>
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+
+      <div class="col-md-6">
+        <div class="fotorama" style="width: 400px; min-width: 0px; max-width: 100%;">
+          <% room.images.each do |image|%>
+        <div data-img=<%= link_to image_tag(room.images_as_thumbnails(image)), image %></div>
+        <%end%>
+      </div>
+        </div>
+      <div class="col-md-6">
+        <div class="small mb-1">  <%=room.short_description%></div>
+        <h1 class="display-5 fw-bolder"><%=room.name%></h1>
+        <div class="fs-5 mb-5">
+          <span class="text-decoration-line-through">$<%=room.price + 100%> </span>
+          <span>$<%=room.price%></span>
+        </div>
+        <p class="lead"><%=room.description%></p>
+        <div class="d-flex">
+          <%= button_to "Click here to book this room", new_room_booking_path(room.id), method: :get, class: "btn btn-outline-dark flex-shrink-0"%>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <div class="bg-dark py-2">
+  </div>
+<% end %>
+
+</br>
+
+<div class="center">
+  <%= paginate @rooms, window: 2%>
+</div>
+

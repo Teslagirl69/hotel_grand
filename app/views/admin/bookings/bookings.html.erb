@@ -1,0 +1,39 @@
+<h5>PDF generation date:</h5>
+<%= Time.zone.now %>
+
+<h5>New bookings on <%=1.day.ago.to_date%>: <%= @caclulations.count%>  </h5>
+
+<h5>pended bookings per day: <%= @caclulations.values_at("pended")[0].to_i%></h5>
+
+<h5>accepted bookings per day: <%= @caclulations.values_at("accepted")[0].to_i%></h5>
+
+
+<h3 align="center">List of all bookings</h3>
+
+<table class="table table-bordered">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">User name</th>
+    <th scope="col">User email</th>
+    <th scope="col">Room id</th>
+    <th scope="col">Booking creation date</th>
+    <th scope="col">Check-in</th>
+    <th scope="col">Check-out</th>
+    <th scope="col">Status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @bookings.each do |booking| %>
+    <tr>
+      <td> <%= booking.user_name %></td>
+      <td> <%= booking.user_email %></td>
+      <td> <%= booking.room_id %></td>
+      <td> <%= booking.created_at.to_date %></td>
+      <td> <%= booking.start_date %></td>
+      <td> <%= booking.last_date %></td>
+      <td> <%= booking.status %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

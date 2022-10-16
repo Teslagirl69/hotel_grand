@@ -1,0 +1,33 @@
+<%= render 'layouts/navigation_for_admin' %>
+<p style="color: green"><%= notice %></p>
+
+<h1 align="center">List of rooms</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Date of create</th>
+      <th scope="col">Last update</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @rooms.each do |room| %>
+    <tr>
+      <td> <%= link_to  room.name, admin_room_path(room) %></td>
+      <td> <%= room.created_at %></td>
+      <td> <%= room.updated_at %></td>
+      <td> <%= button_to "Edit", edit_admin_room_path(room),method: :get, class: "btn btn-xs btn-primary" %>&nbsp; </td>
+      <td> <%= button_to "Delete", admin_room_path(room), method: :delete, data: { confirm: "Are you sure you want to delete this room?"}, class: "btn btn-xs btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+   </tbody>
+  </table>
+
+
+
+

@@ -1,0 +1,63 @@
+<p style="color: green"><%= notice %></p>
+<%= render 'layouts/navigation' %>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+</head>
+<body>
+<div
+  class="bg-image"
+  style="
+  background-image: url('https://phonoteka.org/uploads/posts/2022-01/1643003484_1-phonoteka-org-p-bledno-rozovii-odnotonnii-fon-1.jpg');
+    height: 50vh;
+  "
+>
+  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);, ">
+    <div class="d-flex justify-content-center align-items-center 150vh">
+      <h1 class="text-white mb-0"> Hotel Grand Budapest</h1>
+    </div>
+
+  </div>
+  <br>
+</body>
+<header class="bg-dark py-5">
+  <div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center">
+      <div class="col-lg-8 col-xl-7 col-xxl-6">
+        <div class="my-5 text-center text-xl-start">
+          <h1 class="display-5 fw-bolder text-white mb-2">    <%= @room.name %></h1>
+          <p class="lead fw-normal text-white-50 mb-4">    <%= @room.description %></p>
+          <p class="lead fw-normal text-white mb-4">  Price is:  <%= @room.price %>$ per one night</p>
+          <%= button_to "Book now!", bookings_url, method: :get, class: "btn btn-outline-secondary btn-lg"%>
+        </div>
+      </div>
+      <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+        <div class="fotorama" >
+          <% @room.images.each do |image|%>
+            data-width="100%"
+            data-minheight="500"
+            data-allowfullscreen="native"
+            data-autoplay="true"
+            <div data-img=<%= link_to image_tag(@room.images_as_thumbnails(image)), image %></div>
+          <%end%>
+          </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mask" style="background-color: rgba(0, 0, 0, 0.9);, ">
+  <div class="d-flex justify-content-center align-items-center 150vh">
+    <h1 class="text-white mb-0"> The photos of the room: </h1>
+
+  </div>
+</div>
+<br>
+<div class="container-lg">
+
+<% @room.images.each do |image|%>
+<%= link_to image_tag(@room.images_as_thumbnails(image)), image %>
+    <br>
+<%end%>
+</div>
